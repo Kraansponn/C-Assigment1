@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <ctype.h>
 
 const int arraysize = 7;
 char myLetters[7];
@@ -145,6 +145,36 @@ int main() {
         printf("\n %c --> %d", uniqueLetters[loop], uniqueLettersCount[loop]);
     }
 
+    int keepPlaying = 1;
+    char keepPlayingChoice;
+    char wordInput[sizeof(myLetters)];
+
+    while (keepPlaying == 1) {
+
+
+        printf("\n");
+        printf("Enter Word: ");
+        scanf("%s", wordInput);
+        getchar();
+
+        for (int i = 0; wordInput[i]; i++) {
+            wordInput[i] = tolower(wordInput[i]);
+        }
+
+        printf("\n");
+        printf("%s", wordInput);
+
+
+        printf("\n");
+        printf("Try Again? Y/N \n");
+        scanf("%c", &keepPlayingChoice);
+        getchar();
+
+        if ((keepPlayingChoice == 'n') || (keepPlayingChoice == 'N')) {
+            keepPlaying = 0;
+            printf("WE were here");
+        }
+    }
 
     return 0;
 }
