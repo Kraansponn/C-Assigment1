@@ -54,35 +54,38 @@ int read_array_from_file(const char *filepath, int *array, int array_length) {
 
 
 /**
- *
+ * Finds all the unique letters in an array and adds them to an array
  */
-//
-//char getNextChar(char *currentChar){
-//    if (strcmp( currentChar, "") == 0){
-//        return myLetters[0];
-//    }
-//
-//    int count = 0;
-//    int foundCurrentLetter = -1;
-//    int foundNextLetter = -1;
-//
-//    while (foundCurrentLetter == -1 && foundNextLetter == -1){
-//        count++;
-//
-//        if (strcmp(currentChar, &myLetters[count]) ==0 && strcmp(currentChar , &myLetters[count+1]) == 0){
-//            // We found our current letter and the next letter is different
-//
-//            foundCurrentLetter = 1;
-//            foundNextLetter = 1;
-//
-//        }
-//
-//    }
-//
-//    return myLetters[count+1];
-//
-//
-//}
+int unique_elements(char arr[], int len, char *uniqueLetterArray) {
+
+    char counted[len];
+    int j, n, count, flag;
+
+    counted[0] = arr[0];
+
+    count = 1;/*one element is counted*/
+
+    for (j = 0; j <= len - 1; ++j) {
+        flag = 1;;
+        /*the counted array will always have 'count' elements*/
+        for (n = 0; n < count; ++n) {
+            if (arr[j] == counted[n]) {
+                flag = 0;
+            }
+        }
+        if (flag == 1) {
+            ++count;
+            counted[count - 1] = arr[j];
+            // add letter to new array
+            uniqueLetterArray[count - 1] = counted[count - 1];
+        }
+    }
+
+    uniqueLetterArray[0] = arr[0]; // Because it would get wrong letter
+
+    return count - 1;
+}
+
 
 
 int main() {
@@ -105,6 +108,7 @@ int main() {
         printf("%d", letterValues[loop2]);
     }
 
+    printf("\n");
     printf("%d", letterValues['f' - 97]);
 
     int myLettersCopy[7];
@@ -114,24 +118,20 @@ int main() {
         myLettersCopy[loop3] = myLetters[loop3];
     }
 
-
-    int uniqueLetters[7];
-
-    for (int i = 0; i < sizeof(myLettersCopy); i++) {
-        char currentChar = &myLettersCopy[i];
-
-        if (strcmp(currentChar, myLettersCopy[i])){
-
-        }
-
+    printf("\n");
+    int loop4 = 0;
+    for (loop4 = 0; loop4 < 7; loop4++) {
+        printf("%c", myLettersCopy[loop4]);
     }
 
 
+    printf("\n");
+    char uniqueLetters[sizeof(myLetters)];
+    unique_elements(myLetters, sizeof(myLetters), uniqueLetters);
+    for (loop = 0; loop < arraysize; loop++) {
+        printf("aaaaa %c = %d \n", uniqueLetters[loop], uniqueLetters[loop]);
+    }
 
-
-
-//    char mychatr = getNextChar("o");
-//    printf("fgdfgdssfgdsfgd %c",mychatr);
 
     return 0;
 }
