@@ -86,7 +86,34 @@ int unique_elements(char arr[], int len, char *uniqueLetterArray) {
     return count - 1;
 }
 
+/**
+ * Finds all the unique letters in an array and Counts how many times they occur
+ */
 
+void getUniqueLetterCount(char *myLetters, char *uniqueLetter, int *uniqueLettersCount) {
+    printf("uniquenumbercount");
+    for (int i = 0; i < sizeof(uniqueLetter); i++) {
+//        printf("\nmy i bvalue is %d", i);
+        char currentLetter = uniqueLetter[i];
+        int count = 0;
+
+        for (int j = 0; j < sizeof(myLetters); j++) {
+//            printf("\nmy j bvalue is %d", j);
+
+            if (strlen(&currentLetter) == 0) {
+                break;
+            }
+
+            char anoherletter = myLetters[j];
+
+            if (currentLetter == anoherletter) {
+                printf("\nWE MAKE OIT HERE");
+                count++;
+                uniqueLettersCount[i] = count;
+            }
+        }
+    }
+}
 
 int main() {
     printf("Hello, World!\n");
@@ -128,8 +155,19 @@ int main() {
     printf("\n");
     char uniqueLetters[sizeof(myLetters)];
     unique_elements(myLetters, sizeof(myLetters), uniqueLetters);
+
     for (loop = 0; loop < arraysize; loop++) {
         printf("aaaaa %c = %d \n", uniqueLetters[loop], uniqueLetters[loop]);
+    }
+
+    printf("\n  bbbbbb");
+
+
+    int uniqueLettersCount[sizeof(myLetters)];
+    getUniqueLetterCount(myLetters, uniqueLetters, uniqueLettersCount);
+
+    for (loop = 0; loop < arraysize; loop++) {
+        printf("\nccccccc %c = %d", uniqueLetters[loop], uniqueLettersCount[loop]);
     }
 
 
