@@ -83,15 +83,14 @@ int unique_elements(char arr[], int len, char *uniqueLetterArray) {
 
     uniqueLetterArray[0] = arr[0]; // Because it would get wrong letter
 
-    return count ;
+    return count;
 }
 
 /**
  * Finds all the unique letters in an array and Counts how many times they occur
  */
 
-void getUniqueLetterCount(char *myLetters, char *uniqueLetter, int *uniqueLettersCount) {
-    printf("uniquenumbercount");
+void get_unique_letter_count(char *myLetters, char *uniqueLetter, int *uniqueLettersCount) {
     for (int i = 0; i < sizeof(uniqueLetter); i++) {
         char currentLetter = uniqueLetter[i];
         int count = 0;
@@ -112,57 +111,32 @@ void getUniqueLetterCount(char *myLetters, char *uniqueLetter, int *uniqueLetter
     }
 }
 
+/**
+ *
+ */
+
+
 int main() {
-    printf("Hello, World!\n");
-
     generate_letters(arraysize, myLetters);
-
 
     read_array_from_file(
             "C:\\Users\\Kornel\\Google Drive (kornel.oskroba@mycit.ie)\\Year 2\\Semester 2\\C programing\\Assigment1\\letter_values",
             letterValues, sizeof(letterValues));
 
-    int loop;
-    for (loop = 0; loop < arraysize; loop++) {
-        printf("%c = %d \n", myLetters[loop], myLetters[loop]);
-    }
-
-    int loop2;
-    for (loop2 = 0; loop2 < 26; loop2++) {
-        printf("%d", letterValues[loop2]);
-    }
+    int loop = 0;
 
     printf("\n");
-    printf("%d", letterValues['f' - 97]);
-
-    int myLettersCopy[7];
-
-    int loop3 = 0;
-    for (loop3 = 0; loop3 <= sizeof(myLetters); loop3++) {
-        myLettersCopy[loop3] = myLetters[loop3];
+    for (loop = 0; loop < 7; loop++) {
+        printf("\n %d : %c", loop, myLetters[loop]);
     }
-
-    printf("\n");
-    int loop4 = 0;
-    for (loop4 = 0; loop4 < 7; loop4++) {
-        printf("%c", myLettersCopy[loop4]);
-    }
-
 
     printf("\n");
     char uniqueLetters[sizeof(myLetters)];
 
-    int numberOfUniqueLetters=    unique_elements(myLetters, sizeof(myLetters), uniqueLetters);
-
-    for (loop = 0; loop < arraysize; loop++) {
-        printf("aaaaa %c = %d \n", uniqueLetters[loop], uniqueLetters[loop]);
-    }
-
-    printf("\n  bbbbbb");
-
+    int numberOfUniqueLetters = unique_elements(myLetters, sizeof(myLetters), uniqueLetters);
 
     int uniqueLettersCount[sizeof(myLetters)];
-    getUniqueLetterCount(myLetters, uniqueLetters, uniqueLettersCount);
+    get_unique_letter_count(myLetters, uniqueLetters, uniqueLettersCount);
 
 
     printf("\n");
