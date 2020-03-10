@@ -114,7 +114,15 @@ void get_unique_letter_count(char *myLetters, char *uniqueLetter, int *uniqueLet
 /**
  *
  */
+int my_letters_copy (char *myLetters, char*myLettersCopy){
 
+    for (int i = 0; i < sizeof(myLetters); i++) {
+        myLettersCopy[i]=myLetters[i];
+    }
+    for (int z = 0; z < sizeof(myLettersCopy); ++z) {
+        printf("\n %c",myLettersCopy[z]);
+    }
+}
 
 int main() {
     generate_letters(arraysize, myLetters);
@@ -149,6 +157,9 @@ int main() {
     char keepPlayingChoice;
     char wordInput[sizeof(myLetters)];
 
+    int score =0;
+    char myLettersCopy[sizeof(myLetters)];
+
     while (keepPlaying == 1) {
 
 
@@ -164,6 +175,26 @@ int main() {
         printf("\n");
         printf("%s", wordInput);
 
+        my_letters_copy(myLetters,myLettersCopy);
+
+        for (int j = 0; j < sizeof(myLetters); j++) {
+
+                char currentLetter = myLettersCopy[j];
+
+            for (int i = 0; i < sizeof(wordInput); i++) {
+
+            char currentWordLetter = wordInput[i];
+
+            if (currentLetter == currentWordLetter){
+                myLettersCopy[i] = "";
+            }
+
+            }
+
+        }
+
+        for (int z = 0; z < sizeof(myLettersCopy); ++z) {
+            printf("\n %c",myLettersCopy[z]);}
 
         printf("\n");
         printf("Try Again? Y/N \n");
