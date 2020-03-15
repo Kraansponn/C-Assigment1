@@ -120,9 +120,6 @@ int copy_letters(char *myLetters, char *myLettersCopy) {
     for (int i = 0; i < sizeof(myLetters); i++) {
         myLettersCopy[i] = myLetters[i];
     }
-    for (int z = 0; z < sizeof(myLettersCopy); ++z) {
-        printf("\n %c", myLettersCopy[z]);
-    }
 }
 
 
@@ -131,36 +128,25 @@ int copy_letters(char *myLetters, char *myLettersCopy) {
  */
 
 int check_if_word_is_valid(char *userWord, char *myLettersCopy) {
-    printf("\n");
     int validLetters = 0;
-//    char *temp ="";
     for (int j = 0; j < sizeof(myLettersCopy) - 1; j++) {
 
         char currentLetter = myLettersCopy[j];
 
-        printf("%c :", currentLetter);
         for (int i = 0; i < sizeof(userWord); i++) {
 
             char *currentWordLetter = userWord[i];
-
-            printf("%c ", currentWordLetter);
-            printf("i = %d, ", i);
 
             if (currentLetter == currentWordLetter) {
                 userWord[i] = '#';
                 myLettersCopy[j] = '#';
                 validLetters++;
-                printf("validLetters = %d, ", validLetters);
-//                currentLetter = myLettersCopy[j];
                 break;
             }
 
         }
-        printf("\n");
     }
-    printf("validLetters = %d, ", validLetters);
-    printf("lenof Userword =%d", strlen(userWord));
-    printf("\n");
+
     if (validLetters == strlen(userWord)) {
         return 1;
     } else {
@@ -174,35 +160,13 @@ int check_if_word_is_valid(char *userWord, char *myLettersCopy) {
  */
 
 int get_value_of_word(int *letterValues, char *userWord) {
-    printf("hello1");
     int wordTotal = 0;
-    printf("\n");
     for (int i = 0; i <= sizeof(userWord) - 2; i++) {
         char currentLetter = userWord[i];
-        printf("i= %d, ", i);
-        printf("letter = %c, ", currentLetter);
         int letterPosition = currentLetter - 97;
         wordTotal = wordTotal + letterValues[letterPosition];
-        printf("position %d : ", letterPosition);
-        printf("value %d, ", letterValues[letterPosition]);
-        printf("total %d, \n", wordTotal);
     }
     return wordTotal;
-
-}
-
-/**
- *
- */
-int save_words_and_scores(char *stringOfWords, char *listOfScores, int *stringSize) {
-    stringOfWords = (char *) realloc(stringOfWords, stringSize);
-    listOfScores = (char *) realloc(stringOfWords, stringSize);
-}
-
-/**
- *
- */
-int print_words_and_scores(char *arrayOfWords, char *arrayOfScores) {
 
 }
 
@@ -213,22 +177,12 @@ int main() {
             "C:\\Users\\Kornel\\Google Drive (kornel.oskroba@mycit.ie)\\Year 2\\Semester 2\\C programing\\Assigment1\\letter_values",
             letterValues, sizeof(letterValues));
 
-//    int loop = 0;
-
-    printf("\n");
-
-//    for (loop = 0; loop < 7; loop++) {
-//        printf("\n %d : %c = %d", loop, myLetters[loop], myLetters[loop] - 97);
-//    }
-
-//    printf("\n");
     char uniqueLetters[sizeof(myLetters)];
 
     int numberOfUniqueLetters = unique_elements(myLetters, sizeof(myLetters), uniqueLetters);
 
     int uniqueLettersCount[sizeof(myLetters)];
     get_unique_letter_count(myLetters, uniqueLetters, uniqueLettersCount);
-
 
     printf("\n");
     printf("Your Letters and their count are:");
@@ -255,27 +209,23 @@ int main() {
     while (keepPlaying == 1) {
 
         printf("\n");
-        printf("Enter Word: \n");
+        printf("Enter Word: ");
         scanf("%s", wordInput);
-
-//        strncat(wordInput, &wordInput[0], 1); //ads the first letter of the word onto the end of the word because check_if_word_is_valid cant read the first letter of the string for some unknown reason
 
         for (int i = 0; wordInput[i]; i++) {
             wordInput[i] = tolower(wordInput[i]);
         }
 
-        printf("\n");
-        printf("%s", wordInput);
+            printf("%s, ", wordInput);
 
         copy_letters(myLetters, myLettersCopy);
         copy_letters(wordInput, wordInputCopy);
         copy_letters(wordInputCopy, wordInput);
 
         if (check_if_word_is_valid(wordInputCopy, myLettersCopy) == 1) {
-            printf("valid ");
+
 
             for (int i = 0; i < arraysize; ++i) {
-
                 listOfWords[wordsEntered][i] = wordInput[i];
             }
 
@@ -283,31 +233,21 @@ int main() {
 
             listOfScore[wordsEntered] = wordScore;
 
-            printf("wordscore %d", wordScore);
-            printf("\n");
+        printf("Worth %d Points,",wordScore);
 
             currentScore = currentScore + wordScore;
 
             ++wordsEntered;
         } else {
-            printf("%s", wordInput);
+
             printf(" is invalid!");
+            printf("\n");
         }
 
-        for (int z = 0; z < sizeof(myLettersCopy); ++z) {
-            printf("\n %c", myLettersCopy[z]);
-        }
 
-        printf("\n");
-        for (int j = 0; j < sizeof(wordInput); j++) {
-            wordInput[j] = '#';
-            printf("%c", wordInput[j]);
-        }
-
-        printf("Total = %d \n", currentScore);
+        printf(" Current Total Is %d Points \n", currentScore);
         getchar();
-        printf("\n");
-        printf("Try Again? Y/N \n");
+        printf("Try Again? Y/N : ");
         scanf("%c", &keepPlayingChoice);
         getchar();
 
@@ -320,7 +260,7 @@ int main() {
                 for (int z = 0; z < arraysize; z++) {
                     printf("%c", listOfWords[i][z]);
                 }
-                printf(" %d", listOfScore[i]);
+                printf("---> %d", listOfScore[i]);
                 printf("\n");
             }
         }
