@@ -112,18 +112,52 @@ void get_unique_letter_count(char *myLetters, char *uniqueLetter, int *uniqueLet
 }
 
 /**
- *
+ * Makes a copy of the generated letters
  */
-int my_letters_copy (char *myLetters, char*myLettersCopy){
+
+int copy_letters(char *myLetters, char *myLettersCopy) {
 
     for (int i = 0; i < sizeof(myLetters); i++) {
-        myLettersCopy[i]=myLetters[i];
+        myLettersCopy[i] = myLetters[i];
     }
-    for (int z = 0; z < sizeof(myLettersCopy); ++z) {
-        printf("\n %c",myLettersCopy[z]);
+//    for (int z = 0; z < sizeof(myLettersCopy); ++z) {
+//        printf("\n %c", myLettersCopy[z]);
+//    }
+}
+
+
+/**
+ *
+ */
+
+int check_if_word_is_valid(char *userWord, char *myLettersCopy) {
+    printf("\n");
+    char *temp ="";
+    for (int j = 0; j < sizeof(myLettersCopy); j++) {
+
+        char currentLetter = myLettersCopy[j];
+
+        printf("%c :", currentLetter);
+        for (int i = 0; i < sizeof(userWord); i++) {
+
+            char *currentWordLetter = userWord[i];
+
+            printf("%c ", currentWordLetter);
+            printf("i = %d, ", i);
+
+            if (currentLetter == currentWordLetter) {
+                myLettersCopy[j] = temp;
+                userWord[i] = temp;
+//                currentLetter = myLettersCopy[j];
+                break;
+            }
+
+        }
+        printf("\n");
     }
 }
 
+int get_value_of_word (int letterValues, char userWord){}
 int main() {
     generate_letters(arraysize, myLetters);
 
@@ -156,17 +190,21 @@ int main() {
     int keepPlaying = 1;
     char keepPlayingChoice;
     char wordInput[sizeof(myLetters)];
+    char wordInputCopy[sizeof(myLetters)];
 
-    int score =0;
+    int wordScore = 0;
+    int listOfScore = 0;
+    int CurrentScore = 0;
     char myLettersCopy[sizeof(myLetters)];
 
     while (keepPlaying == 1) {
 
 
         printf("\n");
-        printf("Enter Word: ");
+        printf("Enter Word: \n");
         scanf("%s", wordInput);
-        getchar();
+
+        strncat(wordInput, &wordInput[0], 1); //ads the first letter of the word onto the end of the word because check_if_word_is_valid cant read the first letter of the string for some unknown reason
 
         for (int i = 0; wordInput[i]; i++) {
             wordInput[i] = tolower(wordInput[i]);
@@ -175,27 +213,19 @@ int main() {
         printf("\n");
         printf("%s", wordInput);
 
-        my_letters_copy(myLetters,myLettersCopy);
+        copy_letters(myLetters, myLettersCopy);
+        copy_letters(wordInput, wordInputCopy);
 
-        for (int j = 0; j < sizeof(myLetters); j++) {
+        check_if_word_is_valid(wordInputCopy, myLettersCopy);
 
-                char currentLetter = myLettersCopy[j];
-
-            for (int i = 0; i < sizeof(wordInput); i++) {
-
-            char currentWordLetter = wordInput[i];
-
-            if (currentLetter == currentWordLetter){
-                myLettersCopy[i] = "";
-            }
-
-            }
-
-        }
+        score = get_value_of_word(letterValues,wordInput);
 
         for (int z = 0; z < sizeof(myLettersCopy); ++z) {
-            printf("\n %c",myLettersCopy[z]);}
+            printf("\n %c", myLettersCopy[z]);
+        }
 
+
+        getchar();
         printf("\n");
         printf("Try Again? Y/N \n");
         scanf("%c", &keepPlayingChoice);
