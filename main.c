@@ -194,8 +194,15 @@ int get_value_of_word(int *letterValues, char *userWord) {
 /**
  *
  */
-int save_word_and_score() {
+int save_words_and_scores(char *stringOfWords, char *listOfScores, int *stringSize) {
+    stringOfWords = (char *) realloc(stringOfWords, stringSize);
+    listOfScores = (char *) realloc(stringOfWords, stringSize);
+}
 
+/**
+ *
+ */
+int print_words_and_scores(char *arrayOfWords, char *arrayOfScores) {
 
 }
 
@@ -237,9 +244,9 @@ int main() {
 
     char myLettersCopy[arraysize];
 
-//    int storageSize = 1;
-//    int listOfScore[storageSize][1];
-//    char listOfWords[storageSize][7];
+    int wordsEntered = 0;
+    char *listOfWords[1000][arraysize+1];
+    int *listOfScore[1000];
 
 
     int keepPlaying = 1;
@@ -265,15 +272,23 @@ int main() {
         copy_letters(wordInputCopy, wordInput);
 
         if (check_if_word_is_valid(wordInputCopy, myLettersCopy) == 1) {
-            printf("valid");
-            printf("1~~~~~~~~~~~~~~~ \n");
-//            copy_letters(wordInput, wordInputCopy);
-            printf("2~~~~~~~~~~~~~~~\n");
+            printf("valid ");
+
+            for (int i = 0; i < arraysize; ++i) {
+
+                listOfWords[wordsEntered][i] = wordInput[i];
+            }
+
             wordScore = get_value_of_word(letterValues, wordInput);
-            printf("3~~~~~~~~~~~~~~~\n");
-            printf("%d", wordScore);
+
+            listOfScore[wordsEntered] = wordScore;
+
+            printf("wordscore %d", wordScore);
             printf("\n");
+
             currentScore = currentScore + wordScore;
+
+            ++wordsEntered;
         } else {
             printf("%s", wordInput);
             printf(" is invalid!");
@@ -299,7 +314,18 @@ int main() {
         if ((keepPlayingChoice == 'n') || (keepPlayingChoice == 'N')) {
             keepPlaying = 0;
             printf("WE were here");
+            printf("\n");
+            for (int i = 0; i < wordsEntered; i++) {
+
+                for (int z = 0; z < arraysize; z++) {
+                    printf("%c", listOfWords[i][z]);
+                }
+                printf(" %d", listOfScore[i]);
+                printf("\n");
+            }
         }
+
+        printf("Total Score: %d",currentScore);
     }
 
     return 0;
