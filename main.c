@@ -173,7 +173,7 @@ int main() {
     generate_letters(arraysize, myLetters);
 
     read_array_from_file(
-            "C:\\Users\\Kornel\\Google Drive (kornel.oskroba@mycit.ie)\\Year 2\\Semester 2\\C programing\\Assigment1\\letter_values",
+            "C:\\Users\\Kornel\\Google Drive (kornel.oskroba@mycit.ie)\\Year 2\\Semester 2\\C programing\\Assigment1\\letter_values", // loacion of the file with the letter values
             letterValues, sizeof(letterValues));
 
     char uniqueLetters[sizeof(myLetters)];
