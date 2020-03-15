@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+//TODO: Inseret abolsulte path to the letters text file line 178
+
 const int arraysize = 7; //declaring the variable that will set the size of the array for the randomly generated letters
 char myLetters[7];
 
@@ -172,6 +174,7 @@ int get_value_of_word(int *letterValues, char *userWord) {
 int main() {
     generate_letters(arraysize, myLetters);
 
+    //TODO: change the abolsulte path to the letters text file
     read_array_from_file(
             "C:\\Users\\Kornel\\Google Drive (kornel.oskroba@mycit.ie)\\Year 2\\Semester 2\\C programing\\Assigment1\\letter_values", // loacion of the file with the letter values
             letterValues, sizeof(letterValues));
