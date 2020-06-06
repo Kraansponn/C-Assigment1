@@ -4,5 +4,5 @@ This is a scrabble type game where random letters are generated, values for each
 # Details
 This is entirely written in c
 
-#Usage
+# Usage
 In the main.c change the address location with where the letter_vlaues(marked with a TODO) and then it is good to run
